@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>LoginPage</title>
+    <script src="//code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script>
+        $(function(){
+            if ($.cookie("username")) {
+                window.location = "/home"
+            } else {
+                $("#form_login").submit(function(event) {
+                    event.preventDefault();
+                    if ($("#name").val() !== '') {
+                        $.cookie("username", $("#name").val());
+                        window.location = "/home";
+                    }
+                })
+            }
+        })
+    </script>
+</head>
+<body>
+<div>
+    <div>
+        <form id="form_login">
+            <div style="margin-top: 20px; margin-left: 20px;">
+                <input  placeholder="Enter Username" name="nickname" id="name" type="text" autofocus="" required=""/>
+            </div>
+            <div style="margin-top: 20px; margin-left: 20px;">
+                <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
