@@ -15,9 +15,9 @@ public class HomeController {
     @RequestMapping("/login")
     public String loginPage(){ return "login";}
 
-    @RequestMapping("/home")
-    public String home() {
-        return "home";
+    @RequestMapping("/chat")
+    public String chat() {
+        return "chat";
     }
 
 }

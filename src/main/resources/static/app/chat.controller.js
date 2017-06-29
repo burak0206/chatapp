@@ -11,13 +11,27 @@
             .service('ChatService', ChatService)
             .constant('ChatApiBasePath', "localhost:8081");
 
-        ChatController.$inject = ['$scope','$injector','$cookies','ChatService'];
+        ChatController.$inject = ['$scope','$injector','$cookies','$window','ChatService'];
 
-        function ChatController($scope,$injector,$cookies,ChatService) {
+        function ChatController($scope,$injector,$cookies,$window,ChatService) {
             var chat_controller = this;
             chat_controller.message = "";
             chat_controller.sent_messages = [];
             chat_controller.messages = [];
+
+            chat_controller.init =  function(){
+                if ($cookies.get("username")) {
+                    console.log("User logged");
+                } else {
+                    console.log("User is not logged");
+                    $window.location = "/"
+                }
+            }
+
+            chat_controller.logout = function () {
+                $cookies.remove('username');
+                $window.location = "/"
+            }
 
             chat_controller.addMessage = function() {
                 ChatService.send(chat_controller.message);
@@ -27,11 +41,6 @@
             ChatService.receive().then(null, null, function(message) {
                 console.log("ChatService.receive");
                 console.log("log: "+JSON.parse(message).text);
-               // if(JSON.parse(message).author == $cookies.get('username')){
-                //    chat_controller.sent_messages.push(JSON.parse(message).text);
-                //}else {
-                   // chat_controller.messages.push(JSON.parse(message).author +":  "+ JSON.parse(message).text);
-                //}
                 if(JSON.parse(message).author==$cookies.get('username')){
                     var msg = {
                         author: 'you',
@@ -50,13 +59,6 @@
             });
 
             chat_controller.set_color = function (message) {
-              /*  var author = message.split(":", 1);
-                console.log("::"+author);
-                if (author==$cookies.get('username')) {
-                    return { color: "green" }
-                } else {
-                    return { color: "red" }
-                }*/
                 if (message=='you') {
                     return { color: "green" }
                 } else {
