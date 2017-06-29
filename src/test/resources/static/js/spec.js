@@ -1,9 +1,6 @@
-/**
- * Created by burakdagli on 29.06.2017.
- */
 describe("App", function() {
 
-    beforeEach(module('chatApp'));
+    beforeEach(module('hello'));
 
     var $controller;
     beforeEach(inject(function($injector) {

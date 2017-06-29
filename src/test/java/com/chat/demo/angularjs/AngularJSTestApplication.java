@@ -1,4 +1,4 @@
-package com.chat.demo.web;
+package com.chat.demo.angularjs;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AngularJSTestApplication {
 
-    @RequestMapping("/")
-    String home(){
-        return "forward:/test.html";
+    @RequestMapping("/specrunner")
+    String specrunner(){
+        return "forward:/SpecRunner.html";
     }
 
     public static void main(String[] args) {
