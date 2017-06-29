@@ -23,7 +23,15 @@
 
             login_controller.login = function() {
                 var promise = LoginService.login(login_controller.name);
-                $window.location = "/chat"
+
+                promise.then(function (response) {
+                    console.log(response.data);
+                    $cookies.put('username',response.data.name);
+                    $window.location = "/chat"
+
+                }).catch(function (error) {
+                    console.log(error);
+                })
             };
             console.log($injector.annotate(LoginController));
         }
@@ -32,14 +40,24 @@
 
         function LoginService($q,$http,$timeout,$cookies) {
             var service = this;
+
             service.login =  function (name) {
-                console.log("login service");
-                $cookies.put('username',name);
-                var response = {
-                    data: "success"
+                var url = "/user";
+                var dataObj = {
+                    username : name,
                 };
+
+                var response = $http({
+                    method: "GET",
+                    url: url,
+                    params: dataObj
+                });
+
                 return response;
+
             }
+
+
         }
     }
 )();

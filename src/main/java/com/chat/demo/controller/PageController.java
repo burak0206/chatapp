@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by burakdagli on 27.06.2017.
  */
 @Controller
-public class HomeController {
+public class PageController {
 
     @RequestMapping("/")
-    public String login(){ return "login";}
+    public String loginRedirect(){ return "login";}
 
     @RequestMapping("/login")
     public String loginPage(){ return "login";}
