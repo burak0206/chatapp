@@ -18,6 +18,9 @@ public class UserRestApiController {
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     public User user(@RequestParam("username") String username){
+        if (username == null || username.isEmpty()){
+            username = "username";
+        }
         return userService.findByUsername(username);
     }
 }
