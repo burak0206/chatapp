@@ -8,6 +8,7 @@ import java.util.Date;
 public class ChatMessage {
     private String text;
     private String author;
+    private String id;
     private Date createDate;
 
     public String getText() {
@@ -32,5 +33,13 @@ public class ChatMessage {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

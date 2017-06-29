@@ -19,7 +19,7 @@
             chat_controller.messages = [];
 
             chat_controller.init =  function(){
-                if ($cookies.get("username")) {
+                if ($cookies.get("id")) {
                     console.log("User logged");
                 } else {
                     console.log("User is not logged");
@@ -29,6 +29,7 @@
 
             chat_controller.logout = function () {
                 $cookies.remove('username');
+                $cookies.remove('id');
                 $window.location = "/"
             }
 
@@ -44,7 +45,7 @@
             ChatService.receive().then(null, null, function(message) {
                 console.log("ChatService.receive");
                 console.log("log: "+JSON.parse(message).text);
-                if(JSON.parse(message).author==$cookies.get('username')){
+                if(JSON.parse(message).id==$cookies.get('id')){
                     var msg = {
                         author: 'you',
                         text: JSON.parse(message).text
@@ -96,7 +97,7 @@
             };
 
             service.send =  function (message) {
-                service.stomp.send("/app/hello", {}, JSON.stringify({ 'text': message, 'author': $cookies.get('username') }));
+                service.stomp.send("/app/hello", {}, JSON.stringify({ 'text': message, 'author': $cookies.get('username'), 'id': $cookies.get('id') }));
 
             }
 

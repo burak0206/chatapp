@@ -16,7 +16,7 @@
 
 
             login_controller.init = function () {
-                if ($cookies.get("username")) {
+                if ($cookies.get("id")) {
                     $window.location = "/chat"
                 }
             }
@@ -27,6 +27,7 @@
                 promise.then(function (response) {
                     console.log(response.data);
                     $cookies.put('username',response.data.name);
+                    $cookies.put('id',response.data.id);
                     $window.location = "/chat"
 
                 }).catch(function (error) {
