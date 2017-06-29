@@ -16,7 +16,6 @@
         function ChatController($scope,$injector,$cookies,$window,ChatService) {
             var chat_controller = this;
             chat_controller.message = "";
-            chat_controller.sent_messages = [];
             chat_controller.messages = [];
 
             chat_controller.init =  function(){
@@ -37,6 +36,10 @@
                 ChatService.send(chat_controller.message);
                 chat_controller.message = "";
             };
+
+            chat_controller.clear =  function () {
+                chat_controller.messages = [];
+            }
 
             ChatService.receive().then(null, null, function(message) {
                 console.log("ChatService.receive");
