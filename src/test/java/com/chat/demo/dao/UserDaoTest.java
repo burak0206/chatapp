@@ -25,7 +25,7 @@ public class UserDaoTest {
         String username ="username";
         User user = new User(username);
         User returnedUser = userDao.findByUsername(username);
-        assertNotNull(returnedUser);
+        assertNotNull("User should not be null",returnedUser);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class UserDaoTest {
         String username ="username";
         User user = new User(username);
         User returnedUser = userDao.findByUsername(username);
-        assertNotNull(returnedUser.getId());
+        assertNotNull("Userid should be null",returnedUser.getId());
     }
 
 }

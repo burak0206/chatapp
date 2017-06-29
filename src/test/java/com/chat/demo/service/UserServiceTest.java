@@ -31,8 +31,8 @@ public class UserServiceTest {
         User user = new User(username);
         when(userDao.findByUsername(username)).thenReturn(user);
         User returnedUser = userService.findByUsername(username);
-        assertTrue("", returnedUser.getId().equals(user.getId()));
-        assertTrue("", returnedUser.getName().equals(user.getName()));
+        assertTrue("Userid should be equal", returnedUser.getId().equals(user.getId()));
+        assertTrue("Username should be equal", returnedUser.getName().equals(user.getName()));
     }
 
 
@@ -41,7 +41,7 @@ public class UserServiceTest {
         String username ="username";
         when(userDao.findByUsername(username)).thenReturn(null);
         User returnedUser = userService.findByUsername(username);
-        assertNull("", returnedUser);
+        assertNull("User should be null", returnedUser);
     }
 
 }

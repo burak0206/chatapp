@@ -17,19 +17,19 @@ public class UserTest {
     public void shouldDifferentUserID(){
         User user1 = new User("username");
         User user2 = new User("username");
-        assertFalse("", user1.getId().equals(user2.getId()));
+        assertFalse("Userid should be unique", user1.getId().equals(user2.getId()));
     }
 
     @Test
     public void shouldUserIDNotNull(){
         User user = new User();
-        assertNotNull("", user.getId());
+        assertNotNull("Userid should not be null", user.getId());
     }
 
     @Test
     public void shouldUserNameNull(){
         User user = new User();
-        assertNull("", user.getName());
+        assertNull("Username can be null", user.getName());
     }
 
 }
