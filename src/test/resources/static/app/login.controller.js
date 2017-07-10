@@ -8,33 +8,23 @@
             .controller('LoginController', LoginController)
             .service('LoginService', LoginService);
 
-        LoginController.$inject = ['$scope','$injector','$cookies','$window','LoginService'];
+        LoginController.$inject = ['LoginService'];
 
-        function LoginController($scope,$injector,$cookies,$window,LoginService) {
+        function LoginController(LoginService) {
             var login_controller = this;
             login_controller.name = "";
 
 
             login_controller.init = function () {
-                if ($cookies.get("id")) {
+               /* if ($cookies.get("id")) {
                     $window.location = "/chat"
                 }
-            }
+*/            }
 
             login_controller.login = function() {
-                var promise = LoginService.login(login_controller.name);
-
-                promise.then(function (response) {
-                    console.log(response.data);
-                    $cookies.put('username',response.data.name);
-                    $cookies.put('id',response.data.id);
-                    $window.location = "/chat"
-
-                }).catch(function (error) {
-                    console.log(error);
-                })
+                login_controller.name = LoginService.login(login_controller.name);
             };
-            console.log($injector.annotate(LoginController));
+
         }
 
         LoginService.$inject = ['$q','$http','$timeout','$cookies'];
@@ -55,7 +45,6 @@
                 });
 
                 return response;
-
             }
 
 
