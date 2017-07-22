@@ -1,6 +1,6 @@
 describe("ChatController", function() {
 
-    beforeEach(module('ChatApp'));
+    beforeEach(module('chatApp'));
 
     var $controller;
     var chat_controller;
