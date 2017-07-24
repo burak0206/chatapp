@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AngularJSTestApplication {
 
-    @RequestMapping("/specrunner")
-    String specrunner(){
-        return "forward:/SpecRunner.html";
+    @RequestMapping("/specrunnerchat")
+    String chatspecrunner(){
+        return "forward:/SpecRunnerChat.html";
+    }
+
+    @RequestMapping("/specrunnerlogin")
+    String loginspecrunner(){
+        return "forward:/SpecRunnerLogin.html";
     }
 
     public static void main(String[] args) {

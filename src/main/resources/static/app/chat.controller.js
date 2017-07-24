@@ -1,15 +1,12 @@
 /**
  * Created by burakdagli on 27.06.2017.
  */
-
-
 (function () {
         'use strict';
         angular
             .module('chatApp',['ngCookies'])
             .controller('ChatController', ChatController)
             .service('ChatService', ChatService)
-            .constant('ChatApiBasePath', "localhost:8081");
 
         ChatController.$inject = ['$scope','$injector','$cookies','$window','ChatService'];
 
@@ -72,9 +69,9 @@
             console.log($injector.annotate(ChatController));
         }
 
-        ChatService.$inject = ['$q','$http','$timeout','$cookies','ChatApiBasePath'];
+        ChatService.$inject = ['$q','$http','$timeout','$cookies'];
 
-        function ChatService($q,$http,$timeout,$cookies,ChatApiBasePath) {
+        function ChatService($q,$http,$timeout,$cookies) {
             var service = this;
             var listener = $q.defer();
 
